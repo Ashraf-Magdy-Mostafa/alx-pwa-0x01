@@ -1,26 +1,19 @@
-import React from "react";
+import { MovieProps } from "@/interfaces"
+import Image from "next/image"
 
-type MovieCardProps = {
-    title: string;
-    year?: string | number;
-    posterUrl?: string;
-};
-
-const MovieCard: React.FC<MovieCardProps> = ({ title, year, posterUrl }) => {
+const MovieCard: React.FC<MovieProps> = ({ title, posterImage, releaseYear }) => {
     return (
-        <article className="overflow-hidden rounded-lg border bg-white shadow-sm">
-            {posterUrl ? (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img src={posterUrl} alt={`${title} poster`} className="h-64 w-full object-cover" />
-            ) : (
-                <div className="flex h-64 w-full items-center justify-center bg-gray-100 text-gray-400">No Image</div>
-            )}
-            <div className="p-4">
-                <h3 className="truncate text-lg font-semibold">{title}</h3>
-                {year && <p className="mt-1 text-sm text-gray-500">{year}</p>}
-            </div>
-        </article>
-    );
-};
+        <div className="h-[563px]">
+            <div>
+                <Image className="h-[430px] w-full rounded-md hover:cursor-pointer" src={posterImage} width={100} height={100} alt={title} />
 
-export default MovieCard;
+            </div>
+            <div className="flex justify-between py-4">
+                <p className="text-xl font-bold">{title}</p>
+                <p className="text-xl text-[#E2D609]">{releaseYear}</p>
+            </div>
+        </div>
+    )
+}
+
+export default MovieCard

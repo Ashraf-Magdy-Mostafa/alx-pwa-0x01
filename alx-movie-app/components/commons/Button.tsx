@@ -1,23 +1,11 @@
-import React from "react";
+import { ButtonProps } from "@/interfaces";
 
-type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
-    variant?: "primary" | "secondary" | "ghost";
-};
-
-const Button: React.FC<ButtonProps> = ({ variant = "primary", className = "", children, ...props }) => {
-    const base =
-        "inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition focus:outline-none focus:ring";
-    const styles = {
-        primary: "bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-400",
-        secondary: "bg-gray-100 text-gray-900 hover:bg-gray-200 focus:ring-gray-300",
-        ghost: "bg-transparent text-gray-900 hover:bg-gray-100 focus:ring-gray-300",
-    }[variant];
-
+const Button: React.FC<ButtonProps> = ({ title, action }) => {
     return (
-        <button className={`${base} ${styles} ${className}`} {...props}>
-            {children}
+        <button onClick={action} className="px-8 py-2 border-2 border-[#E2D609] rounded-full hover:bg-[#E2D609] hover:text-black transition-colors duration-300">
+            {title}
         </button>
-    );
-};
+    )
+}
 
 export default Button;
